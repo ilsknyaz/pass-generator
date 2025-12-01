@@ -11,16 +11,84 @@ const strengthText = document.getElementById('strength-text');
 const notification = document.getElementById('notification');
 
 function generatePassword() {
-    let allChars = lowercase + uppercase + numbers + symbols;
-    let password = '';
-    const length = 12;
+    let charset = '';
     
+    if (document.getElementById('uppercase').checked) {
+        charset += uppercase;
+    }
+    if (document.getElementById('lowercase').checked) {
+        charset += lowercase;
+    }
+    if (document.getElementById('numbers').checked) {
+        charset += numbers;
+    }
+    if (document.getElementById('symbols').checked) {
+        charset += symbols;
+    }
+    
+    if (charset === '') {
+        showNotification('Выберите хотя бы один тип символов!');
+        charset = lowercase + uppercase + numbers;
+    }
+    
+    const length = parseInt(document.getElementById('length').value);
+    
+    let password = '';
     for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * allChars.length);
-        password += allChars[randomIndex];
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
     }
     
     return password;
+}
+
+function updateLengthValue() {
+    const lengthSlider = document.getElementById('length');
+    const lengthValue = document.getElementById('length-value');
+    lengthValue.textContent = lengthSlider.value;
+}
+
+function init() {
+    updateLengthValue();
+    document.getElementById('length').addEventListener('input', updateLengthValue);
+    
+    const initialPassword = generatePassword();
+    passwordEl.value = initialPassword;
+    updateStrengthIndicator(initialPassword);
+    
+    generateBtn.addEventListener('click', () => {
+        const newPassword = generatePassword();
+        passwordEl.value = newPassword;
+        updateStrengthIndicator(newPassword);
+    });
+
+    copyBtn.addEventListener('click', () => {
+        if (passwordEl.value) {
+            copyToClipboard(passwordEl.value);
+        }
+    });
+    
+    const checkboxes = document.querySelectorAll('.setting-option input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const newPassword = generatePassword();
+            passwordEl.value = newPassword;
+            updateStrengthIndicator(newPassword);
+        });
+    });
+    
+    document.getElementById('length').addEventListener('change', () => {
+        const newPassword = generatePassword();
+        passwordEl.value = newPassword;
+        updateStrengthIndicator(newPassword);
+    });
+    
+    passwordEl.addEventListener('click', function() {
+        this.select();
+        if (this.value) {
+            copyToClipboard(this.value);
+        }
+    });
 }
 
 function evaluatePasswordStrength(password) {
