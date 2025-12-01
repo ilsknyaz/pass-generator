@@ -9,6 +9,12 @@ const copyBtn = document.getElementById('copy-btn');
 const strengthFill = document.getElementById('strength-fill');
 const strengthText = document.getElementById('strength-text');
 const notification = document.getElementById('notification');
+const lengthSlider = document.getElementById('length');
+const lengthValue = document.getElementById('length-value');
+
+function updateLengthValue() {
+    lengthValue.textContent = lengthSlider.value;
+}
 
 function generatePassword() {
     let charset = '';
@@ -28,10 +34,10 @@ function generatePassword() {
     
     if (charset === '') {
         showNotification('Выберите хотя бы один тип символов!');
-        charset = lowercase + uppercase + numbers;
+        charset = lowercase + uppercase + numbers; // fallback
     }
     
-    const length = parseInt(document.getElementById('length').value);
+    const length = parseInt(lengthSlider.value);
     
     let password = '';
     for (let i = 0; i < length; i++) {
@@ -42,59 +48,11 @@ function generatePassword() {
     return password;
 }
 
-function updateLengthValue() {
-    const lengthSlider = document.getElementById('length');
-    const lengthValue = document.getElementById('length-value');
-    lengthValue.textContent = lengthSlider.value;
-}
-
-function init() {
-    updateLengthValue();
-    document.getElementById('length').addEventListener('input', updateLengthValue);
-    
-    const initialPassword = generatePassword();
-    passwordEl.value = initialPassword;
-    updateStrengthIndicator(initialPassword);
-    
-    generateBtn.addEventListener('click', () => {
-        const newPassword = generatePassword();
-        passwordEl.value = newPassword;
-        updateStrengthIndicator(newPassword);
-    });
-
-    copyBtn.addEventListener('click', () => {
-        if (passwordEl.value) {
-            copyToClipboard(passwordEl.value);
-        }
-    });
-    
-    const checkboxes = document.querySelectorAll('.setting-option input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            const newPassword = generatePassword();
-            passwordEl.value = newPassword;
-            updateStrengthIndicator(newPassword);
-        });
-    });
-    
-    document.getElementById('length').addEventListener('change', () => {
-        const newPassword = generatePassword();
-        passwordEl.value = newPassword;
-        updateStrengthIndicator(newPassword);
-    });
-    
-    passwordEl.addEventListener('click', function() {
-        this.select();
-        if (this.value) {
-            copyToClipboard(this.value);
-        }
-    });
-}
-
 function evaluatePasswordStrength(password) {
     let score = 0;
     
-    if (password.length >= 12) score += 2;
+    if (password.length >= 8) score += 1;
+    if (password.length >= 12) score += 1;
     if (password.length >= 16) score += 1;
     
     if (/[a-z]/.test(password)) score += 1;
@@ -110,11 +68,11 @@ function updateStrengthIndicator(password) {
     let width, color, text;
     
     if (score <= 2) {
-        width = '30%'; color = '#f44336'; text = 'Слабый';
+        width = '30%'; color = '#e74c3c'; text = 'Слабый';
     } else if (score <= 4) {
-        width = '60%'; color = '#ffa726'; text = 'Средний';
+        width = '60%'; color = '#f39c12'; text = 'Средний';
     } else {
-        width = '100%'; color = '#4CAF50'; text = 'Надёжный';
+        width = '100%'; color = '#27ae60'; text = 'Надёжный';
     }
     
     strengthFill.style.width = width;
@@ -144,6 +102,19 @@ function copyToClipboard(text) {
 }
 
 function init() {
+    updateLengthValue();
+    
+    lengthSlider.addEventListener('input', function() {
+        updateLengthValue();
+    });
+    
+    lengthSlider.addEventListener('change', function() {
+        updateLengthValue();
+        const newPassword = generatePassword();
+        passwordEl.value = newPassword;
+        updateStrengthIndicator(newPassword);
+    });
+    
     const initialPassword = generatePassword();
     passwordEl.value = initialPassword;
     updateStrengthIndicator(initialPassword);
@@ -158,6 +129,15 @@ function init() {
         if (passwordEl.value) {
             copyToClipboard(passwordEl.value);
         }
+    });
+    
+    const checkboxes = document.querySelectorAll('.setting-option input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const newPassword = generatePassword();
+            passwordEl.value = newPassword;
+            updateStrengthIndicator(newPassword);
+        });
     });
     
     passwordEl.addEventListener('click', function() {

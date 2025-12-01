@@ -1,3 +1,4 @@
+/* === MINIMAL BLACK & WHITE STYLE === */
 * {
     margin: 0;
     padding: 0;
@@ -5,253 +6,240 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background-color: #f5f5f5;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    color: #333;
+    line-height: 1.6;
 }
 
+/* Основной контейнер */
 .container {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 40px;
     width: 100%;
     max-width: 600px;
+    border: 1px solid #e0e0e0;
 }
 
+/* Заголовок */
 header {
     text-align: center;
     margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
 }
 
 h1 {
-    color: #333;
-    margin-bottom: 10px;
-    font-size: 28px;
+    color: #222;
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
 }
 
 .subtitle {
     color: #666;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
+/* Отображение пароля */
 .password-display {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 25px;
 }
 
 #password {
     flex: 1;
-    padding: 18px 20px;
-    font-size: 18px;
-    border: 2px solid #ddd;
-    border-radius: 12px;
-    background: #f8f9fa;
-    font-family: 'Courier New', monospace;
+    padding: 16px 20px;
+    font-size: 17px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    font-family: 'SF Mono', Monaco, 'Courier New', monospace;
     letter-spacing: 1px;
-    transition: all 0.3s;
+    color: #222;
+    transition: all 0.2s;
 }
 
 #password:focus {
     outline: none;
-    border-color: #2575fc;
+    border-color: #888;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(136, 136, 136, 0.1);
 }
 
 #copy-btn {
-    padding: 0 25px;
-    background: #2575fc;
+    padding: 0 20px;
+    background: #222;
     color: white;
-    border: none;
-    border-radius: 12px;
+    border: 1px solid #222;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 18px;
-    transition: all 0.3s;
+    font-size: 16px;
+    transition: all 0.2s;
+    min-width: 60px;
 }
 
 #copy-btn:hover {
-    background: #1a68e8;
-    transform: translateY(-2px);
+    background: #333;
+    transform: translateY(-1px);
 }
 
+#copy-btn:active {
+    transform: translateY(0);
+}
+
+/* Индикатор надежности */
 .password-strength {
     margin-bottom: 30px;
 }
 
 .strength-bar {
-    height: 10px;
+    height: 6px;
     background: #eee;
-    border-radius: 5px;
+    border-radius: 3px;
     margin-bottom: 10px;
     overflow: hidden;
 }
 
 .strength-fill {
     height: 100%;
-    width: 60%; /* Начальное значение */
-    background: #ffa726;
-    border-radius: 5px;
-    transition: width 0.3s;
+    width: 60%;
+    background: #888;
+    border-radius: 3px;
+    transition: width 0.3s, background-color 0.3s;
 }
 
 #strength-text {
-    font-size: 14px;
+    font-size: 13px;
     color: #666;
     display: block;
     text-align: center;
+    font-weight: 500;
 }
 
+/* Основная кнопка */
 .generate-btn {
     width: 100%;
-    padding: 18px;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    padding: 16px;
+    background: #222;
     color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: 600;
+    border: 1px solid #222;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s;
-    margin-bottom: 30px;
+    transition: all 0.2s;
+    margin-bottom: 25px;
 }
 
 .generate-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(37, 117, 252, 0.3);
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.generate-btn:active {
+    transform: translateY(0);
 }
 
 .generate-btn i {
     margin-right: 10px;
 }
 
-.tips {
-    background: #f0f7ff;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-}
-
-.tips h3 {
-    color: #2575fc;
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-.tips ul {
-    list-style-position: inside;
-    color: #555;
-}
-
-.tips li {
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-
-footer {
-    text-align: center;
-    color: #888;
-    font-size: 14px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4CAF50;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    opacity: 0;
-    transform: translateX(100px);
-    transition: all 0.3s;
-    z-index: 1000;
-}
-
-.notification.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
+/* Настройки */
 .settings {
-    background: white;
-    border: 2px solid #e3e3e3;
-    border-radius: 12px;
-    padding: 25px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
     margin-bottom: 25px;
 }
 
 .settings h3 {
-    color: #333;
+    color: #222;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .setting {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .setting label {
     display: block;
-    margin-bottom: 10px;
-    color: #555;
+    margin-bottom: 8px;
+    color: #444;
     font-weight: 500;
+    font-size: 14px;
 }
 
 .slider {
     width: 100%;
-    height: 8px;
+    height: 4px;
     -webkit-appearance: none;
-    background: #e0e0e0;
-    border-radius: 4px;
+    background: #ddd;
+    border-radius: 2px;
     outline: none;
 }
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 22px;
-    height: 22px;
-    background: #2575fc;
+    width: 18px;
+    height: 18px;
+    background: #222;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.2s;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .slider::-webkit-slider-thumb:hover {
-    background: #1a68e8;
+    background: #333;
     transform: scale(1.1);
 }
 
+/* Группа настроек */
 .setting-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 12px;
 }
 
 .setting-option {
     display: flex;
     align-items: center;
-    padding: 12px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    transition: all 0.3s;
+    padding: 12px 15px;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    transition: all 0.2s;
 }
 
 .setting-option:hover {
-    background: #e9ecef;
+    border-color: #ccc;
+    background: #f9f9f9;
 }
 
 .setting-option input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin-right: 10px;
     cursor: pointer;
+    accent-color: #222;
 }
 
 .setting-option label {
@@ -259,25 +247,183 @@ footer {
     user-select: none;
     margin: 0;
     color: #333;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-@media (max-width: 500px) {
-    .setting-group {
-        grid-template-columns: 1fr;
-    }
+/* Советы */
+.tips {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #eee;
 }
 
+.tips h3 {
+    color: #222;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.tips ul {
+    list-style-position: inside;
+    color: #555;
+    font-size: 14px;
+}
+
+.tips li {
+    margin-bottom: 8px;
+    padding-left: 5px;
+}
+
+.tips li:before {
+    content: "•";
+    color: #888;
+    margin-right: 10px;
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Уведомление */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #222;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.3s;
+    z-index: 1000;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Адаптивность */
 @media (max-width: 600px) {
     .container {
         padding: 25px;
+        border-radius: 8px;
     }
     
     h1 {
-        font-size: 24px;
+        font-size: 20px;
     }
     
     #password {
-        font-size: 16px;
-        padding: 15px;
+        font-size: 15px;
+        padding: 14px;
+    }
+    
+    .setting-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .generate-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+}
+
+/* Темная тема для систем, которые её поддерживают */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #f0f0f0;
+    }
+    
+    .container {
+        background: #1e1e1e;
+        border-color: #333;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    h1, .settings h3, .tips h3 {
+        color: #f0f0f0;
+    }
+    
+    .subtitle, #strength-text, .setting label, .tips li {
+        color: #aaa;
+    }
+    
+    #password {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #f0f0f0;
+    }
+    
+    #password:focus {
+        border-color: #666;
+        background: #2a2a2a;
+        box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.2);
+    }
+    
+    .settings, .tips {
+        background: #252525;
+        border-color: #333;
+    }
+    
+    .setting-option {
+        background: #2a2a2a;
+        border-color: #333;
+    }
+    
+    .setting-option:hover {
+        background: #303030;
+        border-color: #444;
+    }
+    
+    .setting-option label {
+        color: #ddd;
+    }
+    
+    .strength-bar {
+        background: #333;
+    }
+    
+    footer {
+        color: #777;
+        border-color: #333;
+    }
+    
+    .slider {
+        background: #444;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        background: #f0f0f0;
+        border-color: #1e1e1e;
+    }
+    
+    .generate-btn, #copy-btn {
+        background: #f0f0f0;
+        color: #121212;
+        border-color: #f0f0f0;
+    }
+    
+    .generate-btn:hover, #copy-btn:hover {
+        background: #fff;
+    }
+    
+    .notification {
+        background: #f0f0f0;
+        color: #121212;
     }
 }
