@@ -179,6 +179,94 @@ footer {
     transform: translateX(0);
 }
 
+.settings {
+    background: white;
+    border: 2px solid #e3e3e3;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.settings h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.setting {
+    margin-bottom: 25px;
+}
+
+.setting label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    background: #e0e0e0;
+    border-radius: 4px;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #2575fc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: #1a68e8;
+    transform: scale(1.1);
+}
+
+.setting-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.setting-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.setting-option:hover {
+    background: #e9ecef;
+}
+
+.setting-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.setting-option label {
+    cursor: pointer;
+    user-select: none;
+    margin: 0;
+    color: #333;
+}
+
+@media (max-width: 500px) {
+    .setting-group {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 25px;
